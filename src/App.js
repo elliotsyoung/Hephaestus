@@ -28,6 +28,7 @@ class App extends Component
     this.onStart = this.onStart.bind(this);
     this.onStop = this.onStop.bind(this);
     this.toggleQuickCommandsListVisibility = this.toggleQuickCommandsListVisibility.bind(this);
+    this.buttonOneClick = this.buttonOneClick.bind(this);
 
     this.state = {
       messages: [
@@ -57,6 +58,11 @@ class App extends Component
     })
 
   }
+  buttonOneClick(event)
+  {
+    this.setState({inputText:"This is test message one"})
+  }
+
   sendChat(event)
   {
     event.preventDefault();
@@ -70,6 +76,22 @@ class App extends Component
   handleChatInputChange(event)
   {
     console.log("text changed");
+    if(this.state.inputText === '')
+    {
+      socket.emit('to room', {
+      room: "pi-client",
+      type: "typing",
+      data: "not typing"
+    });
+    } else
+    {
+      socket.emit('to room', {
+        room: "pi-client",
+        type: "typing",
+        data: "typing"
+      });
+    }
+
     this.setState(
     {
       [event.target.name]: event.target.value
@@ -132,7 +154,7 @@ class App extends Component
         <div key="b" data-grid={{x: 15, y: 20, w: 5, h: 2.030}}>
           {this.shouldRenderQuickCommandsList()}
           <br/>
-          <QuickCommands toggleQuickCommandsListVisibility={this.toggleQuickCommandsListVisibility}/>
+          <QuickCommands buttonOneClick={this.buttonOneClick} toggleQuickCommandsListVisibility={this.toggleQuickCommandsListVisibility}/>
         </div>
       </ResponsiveGridLayout>
     </div>);
