@@ -8,13 +8,15 @@ class myForm extends React.Component
     super(props);
 
   }
+  
   render()
   {
     return (
 
       <div className="quick-wrapper">
 
-            <button type="submit" className="">First Macro</button>
+            <button onClick={this.props.buttonOneClick} type="submit" className="">First Macro</button>
+
             <button type="submit" className="">Second Macro</button>
             <button type="submit" className="">Third Macro</button>
             <button type="submit" className="">Fourth Macro</button>

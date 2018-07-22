@@ -19,7 +19,7 @@ class myFormList extends React.Component
       <div className="quick-wrapper-list">
         <div className="quick-input-box">
           <p>[Button One]&nbsp; : &nbsp;</p>
-          <p>Hello [NAME]! Welcome to class</p>
+          <p>This is test message one</p>
           </div>
 
       </div>
