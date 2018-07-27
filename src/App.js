@@ -29,7 +29,10 @@ class App extends Component
     this.onStop = this.onStop.bind(this);
     this.toggleQuickCommandsListVisibility = this.toggleQuickCommandsListVisibility.bind(this);
     this.buttonOneClick = this.buttonOneClick.bind(this);
-
+    this.buttonTwoClick = this.buttonTwoClick.bind(this);
+    this.buttonThreeClick = this.buttonThreeClick.bind(this);
+    this.buttonFourClick = this.buttonFourClick.bind(this);
+    this.buttonFiveClick = this.buttonFiveClick.bind(this);
     this.state = {
       messages: [
         "Hello There", "Welcome to the app!"
@@ -58,10 +61,34 @@ class App extends Component
     })
 
   }
+
+  // macro buttons
   buttonOneClick(event)
   {
     this.setState({inputText:"This is test message one"})
   }
+
+  buttonTwoClick(event)
+  {
+    this.setState({inputText:"This is test message two"})
+  }
+
+  buttonThreeClick(event)
+  {
+    this.setState({inputText:"This is test message three"})
+  }
+
+  buttonFourClick(event)
+  {
+    this.setState({inputText:"This is test message four"})
+  }
+
+  buttonFiveClick(event)
+  {
+    this.setState({inputText:"This is test message five"})
+  }
+
+// end macro buttons
 
   sendChat(event)
   {
@@ -149,12 +176,18 @@ class App extends Component
       <p className="App-intro"></p>
       <ResponsiveGridLayout className="layout" draggableCancel="input,textarea">
         <div key="a" data-grid={{x: 0, y: 0, w: 7, h: 4}}>
-          <ChatComponent inputText={this.state.inputText} handleChatInputChange={this.handleChatInputChange} sendChat={this.sendChat} messages={this.state.messages}/>
+          <ChatComponent inputText={this.state.inputText} hand leChatInputChange={this.handleChatInputChange} sendChat={this.sendChat} messages={this.state.messages}/>
         </div>
         <div key="b" data-grid={{x: 15, y: 20, w: 5, h: 2.030}}>
           {this.shouldRenderQuickCommandsList()}
           <br/>
-          <QuickCommands buttonOneClick={this.buttonOneClick} toggleQuickCommandsListVisibility={this.toggleQuickCommandsListVisibility}/>
+          <QuickCommands
+            buttonOneClick={this.buttonOneClick}
+            buttonTwoClick={this.buttonTwoClick}
+            buttonThreeClick={this.buttonThreeClick}
+            buttonFourClick={this.buttonFourClick}
+            buttonFiveClick={this.buttonFiveClick}
+            toggleQuickCommandsListVisibility={this.toggleQuickCommandsListVisibility}/>
         </div>
       </ResponsiveGridLayout>
     </div>);
