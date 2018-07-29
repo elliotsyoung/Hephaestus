@@ -60,7 +60,7 @@ class App extends Component
       })
     })
 
-  }
+  } // end of constructor
 
   // macro buttons
   buttonOneClick(event)
@@ -102,6 +102,7 @@ class App extends Component
   }
   handleChatInputChange(event)
   {
+    console.log("changing input");
     console.log("text changed");
     if(this.state.inputText === '')
     {
