@@ -75,7 +75,7 @@ class App extends Component
 
   buttonThreeClick(event)
   {
-    this.setState({inputText:"Whoops, sorry about that! Sometimes machines make mistakes too."})
+    this.setState({inputText:"Sorry about the computational error, Sometimes my machine kind makes errors too!"})
   }
 
   buttonFourClick(event)
