@@ -14,7 +14,6 @@ class myForm extends React.Component
     return (
 
       <div className="quick-wrapper">
-
             <button onClick={this.props.buttonOneClick} type="submit" className="">First Macro</button>
             <button onClick={this.props.buttonTwoClick} type="submit" className="">Second Macro</button>
             <button onClick={this.props.buttonThreeClick} type="submit" className="">Third Macro</button>
@@ -22,9 +21,8 @@ class myForm extends React.Component
             <button onClick={this.props.buttonFiveClick} type="submit" className="">Fifth Macro</button>
             <br/>
             <br/>
-            <button onClick={ this.props.toggleQuickCommandsListVisibility }>Toggle things</button>
-
-      </div>
+            <button onClick={ this.props.toggleQuickCommandsListVisibility }>Toggle Help </button>
+            </div>
 
     )
   }
