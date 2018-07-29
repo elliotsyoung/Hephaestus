@@ -12,3 +12,7 @@
   height: 100%;
   text-align: Left;
 }
+
+.quick-wrapper #xtoggle {
+  text-align: center;
+}

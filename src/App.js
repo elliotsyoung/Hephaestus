@@ -176,7 +176,7 @@ class App extends Component
       <p className="App-intro"></p>
       <ResponsiveGridLayout className="layout" draggableCancel="input,textarea">
         <div key="a" data-grid={{x: 0, y: 0, w: 7, h: 4}}>
-          <ChatComponent inputText={this.state.inputText} hand leChatInputChange={this.handleChatInputChange} sendChat={this.sendChat} messages={this.state.messages}/>
+          <ChatComponent inputText={this.state.inputText} handleChatInputChange={this.handleChatInputChange} sendChat={this.sendChat} messages={this.state.messages}/>
         </div>
         <div key="b" data-grid={{x: 15, y: 20, w: 5, h: 2.030}}>
           {this.shouldRenderQuickCommandsList()}
