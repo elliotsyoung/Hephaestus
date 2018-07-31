@@ -15,6 +15,7 @@ from 'react-grid-layout';
 import ChatComponent from './components/ChatComponent.js';
 import QuickCommands from './components/QuickCommands.js';
 import QuickCommandsList from './components/QuickCommandsList.js';
+import ChatSettings from './components/chatSettings.js';
 import openSocket from 'socket.io-client';
 const socket = openSocket('https://fusionpaloalto.elliotsyoung.com');
 const ResponsiveGridLayout = WidthProvider(Responsive);
@@ -176,10 +177,10 @@ class App extends Component
       </header>
       <p className="App-intro"></p>
       <ResponsiveGridLayout className="layout" draggableCancel="input,textarea">
-        <div key="a" data-grid={{x: 0, y: 0, w: 7, h: 4}}>
+        <div key="a" data-grid={{x: 0, y: 0, w: 7, h: 2}}>
           <ChatComponent inputText={this.state.inputText} handleChatInputChange={this.handleChatInputChange} sendChat={this.sendChat} messages={this.state.messages}/>
         </div>
-        <div key="b" data-grid={{x: 15, y: 20, w: 5, h: 2.030}}>
+        <div key="b" data-grid={{x: 15, y: 0, w: 5, h: 2.030}}>
           {this.shouldRenderQuickCommandsList()}
           <br/>
           <QuickCommands
@@ -189,6 +190,9 @@ class App extends Component
             buttonFourClick={this.buttonFourClick}
             buttonFiveClick={this.buttonFiveClick}
             toggleQuickCommandsListVisibility={this.toggleQuickCommandsListVisibility}/>
+        </div>
+        <div key="c" data-grid={{x: 0, y: 20, w: 7, h: 2}}>
+          <ChatSettings/>
         </div>
       </ResponsiveGridLayout>
     </div>);
