@@ -66,27 +66,27 @@ class App extends Component
   // macro buttons
   buttonOneClick(event)
   {
-    this.setState({inputText:"This is test message one"})
+    this.setState({inputText:"Hello there! My name is Brian and I'm the teaching assistant for this classroom. Elliot has programmed me to assist in our lessons together."})
   }
 
   buttonTwoClick(event)
   {
-    this.setState({inputText:"This is test message two"})
+    this.setState({inputText:"A lot of people often wonder whether or not I'm real. Well, I am. And it's not nice for you to say I'm fake. It hurts my feelings."})
   }
 
   buttonThreeClick(event)
   {
-    this.setState({inputText:"This is test message three"})
+    this.setState({inputText:"Sorry about the computational error, Sometimes my machine kind makes errors too!"})
   }
 
   buttonFourClick(event)
   {
-    this.setState({inputText:"This is test message four"})
+    this.setState({inputText:"It was very nice meeting you, and I hope you enjoyed today's class. I hope to see you again!"})
   }
 
   buttonFiveClick(event)
   {
-    this.setState({inputText:"This is test message five"})
+    this.setState({inputText:"Math is important because it teaches you how to solve problems. Honestly speaking, I don't know if you'll use most of the equations we learn in here but I do expect you to develop your sense of intuition."})
   }
 
 // end macro buttons
@@ -105,7 +105,7 @@ class App extends Component
   {
     console.log("changing input");
     console.log("text changed");
-    if(this.state.inputText === '')
+    if(event.target.value === '')
     {
       socket.emit('to room', {
       room: "pi-client",
