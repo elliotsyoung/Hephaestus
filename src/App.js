@@ -34,6 +34,7 @@ class App extends Component
     this.buttonThreeClick = this.buttonThreeClick.bind(this);
     this.buttonFourClick = this.buttonFourClick.bind(this);
     this.buttonFiveClick = this.buttonFiveClick.bind(this);
+    this.handleVoiceChange = this.handleVoiceChange.bind(this);
     this.state = {
       messages: [
         "Hello There", "Welcome to the app!"
@@ -150,6 +151,17 @@ class App extends Component
     })
   }
 
+  handleVoiceChange(event)
+  {
+    console.log("changed voice to", event.target.value);
+    const new_voice = event.target.value;
+    socket.emit('to room',
+    {
+      room: "pi-client",
+      type: "change voice",
+      data: new_voice
+    });
+  }
   // DRAG HANDLERS
   onStart()
   {
@@ -215,7 +227,7 @@ class App extends Component
             toggleQuickCommandsListVisibility={this.toggleQuickCommandsListVisibility}/>
         </div>
         <div key="c" data-grid={{x: 0, y: 20, w: 7, h: 2}}>
-          <ChatSettings/>
+          <ChatSettings handleVoiceChange={this.handleVoiceChange}/>
         </div>
       </ResponsiveGridLayout>
     </div>);
