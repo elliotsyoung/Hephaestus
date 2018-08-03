@@ -66,30 +66,50 @@ class App extends Component
   // macro buttons
   buttonOneClick(event)
   {
-    this.setState({inputText:"Hello there! My name is Brian and I'm the teaching assistant for this classroom. Elliot has programmed me to assist in our lessons together."})
+    this.inputTextField.focus();
+    this.setState(
+    {
+      inputText: "Hello there! My name is Brian and I'm the teaching assistant for this classroom. Elliot has programmed me to assist in our lessons together."
+    })
   }
 
   buttonTwoClick(event)
   {
-    this.setState({inputText:"A lot of people often wonder whether or not I'm real. Well, I am. And it's not nice for you to say I'm fake. It hurts my feelings."})
+    this.inputTextField.focus();
+    this.setState(
+    {
+      inputText: "A lot of people often wonder whether or not I'm real. Well, I am. And it's not nice for you to say I'm fake. It hurts my feelings."
+    })
   }
 
   buttonThreeClick(event)
   {
-    this.setState({inputText:"Sorry about the computational error, Sometimes my machine kind makes errors too!"})
+    this.inputTextField.focus();
+    this.setState(
+    {
+      inputText: "Sorry about the computational error, Sometimes my machine kind makes errors too!"
+    })
   }
 
   buttonFourClick(event)
   {
-    this.setState({inputText:"It was very nice meeting you, and I hope you enjoyed today's class. I hope to see you again!"})
+    this.inputTextField.focus();
+    this.setState(
+    {
+      inputText: "It was very nice meeting you, and I hope you enjoyed today's class. I hope to see you again!"
+    })
   }
 
   buttonFiveClick(event)
   {
-    this.setState({inputText:"Math is important because it teaches you how to solve problems. Honestly speaking, I don't know if you'll use most of the equations we learn in here but I do expect you to develop your sense of intuition."})
+    this.inputTextField.focus();
+    this.setState(
+    {
+      inputText: "Math is important because it teaches you how to solve problems. Honestly speaking, I don't know if you'll use most of the equations we learn in here but I do expect you to develop your sense of intuition."
+    })
   }
 
-// end macro buttons
+  // end macro buttons
 
   sendChat(event)
   {
@@ -105,16 +125,19 @@ class App extends Component
   {
     console.log("changing input");
     console.log("text changed");
-    if(event.target.value === '')
+    if (event.target.value === '')
     {
-      socket.emit('to room', {
-      room: "pi-client",
-      type: "typing",
-      data: "not typing"
-    });
-    } else
+      socket.emit('to room',
+      {
+        room: "pi-client",
+        type: "typing",
+        data: "not typing"
+      });
+    }
+    else
     {
-      socket.emit('to room', {
+      socket.emit('to room',
+      {
         room: "pi-client",
         type: "typing",
         data: "typing"
@@ -178,7 +201,7 @@ class App extends Component
       <p className="App-intro"></p>
       <ResponsiveGridLayout className="layout" draggableCancel="input,textarea">
         <div key="a" data-grid={{x: 0, y: 0, w: 7, h: 2}}>
-          <ChatComponent inputText={this.state.inputText} handleChatInputChange={this.handleChatInputChange} sendChat={this.sendChat} messages={this.state.messages}/>
+          <ChatComponent inputText={this.state.inputText} handleChatInputChange={this.handleChatInputChange} sendChat={this.sendChat} messages={this.state.messages} inputRef={(ref) => this.inputTextField = ref} />
         </div>
         <div key="b" data-grid={{x: 15, y: 0, w: 5, h: 2.030}}>
           {this.shouldRenderQuickCommandsList()}
