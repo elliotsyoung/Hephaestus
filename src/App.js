@@ -36,9 +36,7 @@ class App extends Component
     this.buttonFiveClick = this.buttonFiveClick.bind(this);
     this.handleVoiceChange = this.handleVoiceChange.bind(this);
     this.state = {
-      messages: [
-        "Hello There", "Welcome to the app!"
-      ],
+      messages: [],
       inputText: "",
       activeDrags: 0,
       shouldShowQuickCommandsList: true,
