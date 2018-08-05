@@ -20,6 +20,7 @@ class chatSettings extends Component
       <div className="chatSettings">
         <select id="pet-select" onChange={this.props.handleVoiceChange}>
         <option value="">--Please choose an option--</option>
+        <option value="BB8">BB8 Voice</option>
         <option value="Salli">Salli</option>
         <option value="Kimberly">Kimberly</option>
         <option value="Kendra">Kendra</option>
