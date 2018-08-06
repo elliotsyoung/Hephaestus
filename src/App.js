@@ -72,6 +72,12 @@ class App extends Component
       inputText: "Hello there! My name is Brian and I'm the teaching assistant for this classroom. Elliot has programmed me to assist in our lessons together.",
       previewText: "Hello there! My name is Brian and I'm the teaching assistant for this classroom. Elliot has programmed me to assist in our lessons together."
     })
+    socket.emit('to room',
+    {
+      room: "pi-client",
+      type: "typing",
+      data: "typing"
+    });
   }
 
   buttonTwoClick(event)
