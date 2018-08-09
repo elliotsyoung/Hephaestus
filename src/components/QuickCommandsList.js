@@ -7,6 +7,7 @@ class myFormList extends React.Component
     super(props);
     console.log(props);
   }
+
   generatePreviewText()
   {
     return (
@@ -18,7 +19,7 @@ class myFormList extends React.Component
     return (
       <div className="quick-wrapper-list">
         {this.generatePreviewText()}
-        
+
       </div>
     )
   }
