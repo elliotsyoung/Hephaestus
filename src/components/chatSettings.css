@@ -1,6 +1,6 @@
 
 .chatSettings{
-  display: inline-flex;
+
   align-items: flex-end;
   flex-direction: column;
   width: 100%;
@@ -25,4 +25,7 @@
   /* vertical-align: top; */
   display: flex;
   flex-direction: row;
+}
+table {
+  width: 100%;
 }
