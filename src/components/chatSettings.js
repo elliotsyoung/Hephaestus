@@ -23,7 +23,7 @@ class chatSettings extends Component
             <tr>
               <td>Robot Voice Selection:</td>
               <td>
-                <select id="pet-select" onchange="{this.props.handleVoiceChange}">
+                <select id="pet-select" onChange={this.props.handleVoiceChange}>
                   <option value="">--Please choose an option--</option>
                   <option value="BB8">BB8 Voice</option>
                   <option value="Salli">Salli</option>
