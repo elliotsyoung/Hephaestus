@@ -7,11 +7,10 @@ import './ChatComponent.css';
 
 class ChatComponent extends Component
 {
-  constructor(props)
-  {
-    super(props);
-    console.log(props);
-  }
+  // constructor(props)
+  // {
+  //   super(props);
+  // }
   renderMessages()
   {
     return this.props.messages.map((message, key) =>

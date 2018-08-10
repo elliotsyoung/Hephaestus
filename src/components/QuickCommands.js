@@ -3,11 +3,11 @@ import './QuickCommands.css';
 
 class myForm extends React.Component
 {
-  constructor(props)
-  {
-    super(props);
-    console.log(this.props);
-  }
+  // constructor(props)
+  // {
+  //   super(props);
+  //   console.log(this.props);
+  // }
 
   render()
   {

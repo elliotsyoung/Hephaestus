@@ -2,11 +2,11 @@ import React from "react";
 import './QuickCommandsList.css';
 class myFormList extends React.Component
 {
-  constructor(props)
-  {
-    super(props);
-    console.log(props);
-  }
+  // constructor(props)
+  // {
+  //   super(props);
+  //   console.log(props);
+  // }
 
   generatePreviewText()
   {
