@@ -218,7 +218,7 @@ class App extends Component
       </header>
       <p className="App-intro"></p>
       <ResponsiveGridLayout className="layout" draggableCancel="input,textarea">
-        <div key="a" data-grid={{x: 0, y: 0, w: 7, h: 2}}>
+        <div key="a" data-grid={{x: 0, y: 20, w: 7, h: 2}}>
           <ChatComponent inputText={this.state.inputText} handleChatInputChange={this.handleChatInputChange} sendChat={this.sendChat} messages={this.state.messages} inputRef={(ref) => this.inputTextField = ref} />
         </div>
         <div key="b" data-grid={{x: 15, y: 0, w: 5, h: 2.030}}>
@@ -232,7 +232,7 @@ class App extends Component
             buttonFiveClick={this.buttonFiveClick}
             toggleQuickCommandsListVisibility={this.toggleQuickCommandsListVisibility}/>
         </div>
-        <div key="c" data-grid={{x: 0, y: 20, w: 7, h: 2}}>
+        <div key="c" data-grid={{x: 0, y: 0, w: 7, h: 2}}>
           <ChatSettings handleVoiceChange={this.handleVoiceChange}/>
         </div>
       </ResponsiveGridLayout>
