@@ -14,9 +14,9 @@ class ChatComponent extends Component
   renderMessages()
   {
     return this.props.messages.map((message, key) =>
-    {
-      return <li key={key}>{message}</li>
-    })
+  {
+    return <li key={key}>{message}</li>
+  })
   }
   render()
   {
