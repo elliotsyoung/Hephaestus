@@ -35,7 +35,11 @@ class App extends Component
       inputText: "",
       activeDrags: 0,
       shouldShowQuickCommandsList: true,
-      previewText: "Preview Text"
+      previewText: "Preview Text",
+      FirstName: "",
+      LastName: "",
+      Favorite: "",
+      Comment: ""
     }
     // Socket Setup
     socket.emit("subscribe",
@@ -73,6 +77,8 @@ onLayoutChange(layout) {
   // macro buttons
   buttonOneClick(event)
   {
+     var test = this.props.FirstName;
+    console.log(test);
     this.inputTextField.focus();
     this.setState(
     {
