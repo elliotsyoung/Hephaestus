@@ -17,6 +17,7 @@ const propTypes = {
 
 class Dictaphone extends Component
 {
+
   constructor(props)
   {
     super(props);
@@ -33,6 +34,8 @@ class Dictaphone extends Component
     }, 5000);
 
   }
+
+
   componentDidUpdate()
   {
     this.checkForCommands();
@@ -84,6 +87,10 @@ class Dictaphone extends Component
       this.props.stopListening();
     }
   }
+  sendToChatBox(mytext)
+  {
+    console.log(mytext);
+  }
   render()
   {
     const
@@ -97,10 +104,10 @@ class Dictaphone extends Component
     {
       return null
     }
-
     return (
       <div className="chatSettings">
         <button onClick={resetTranscript}>Reset</button>
+        <button onClick={this.sendToChatBox(finalTranscript)}>Send</button>
         <span>{transcript}</span>
         <br/>
         <h2>{finalTranscript}</h2>
