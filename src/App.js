@@ -6,19 +6,14 @@ from 'react';
 import './App.css';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
-import
-{
-  Responsive,
-  WidthProvider
-}
-from 'react-grid-layout';
+import RGL, { WidthProvider } from "react-grid-layout";
 import ChatComponent from './components/ChatComponent.js';
 import QuickCommands from './components/QuickCommands.js';
 import QuickCommandsList from './components/QuickCommandsList.js';
 import ChatSettings from './components/chatSettings.js';
 import openSocket from 'socket.io-client';
 const socket = openSocket('https://fusionpaloalto.elliotsyoung.com');
-const ResponsiveGridLayout = WidthProvider(Responsive);
+const ReactGridLayout = WidthProvider(RGL);
 class App extends Component
 {
   constructor(props)
@@ -40,7 +35,11 @@ class App extends Component
       inputText: "",
       activeDrags: 0,
       shouldShowQuickCommandsList: true,
-      previewText: "Preview Text"
+      previewText: "Preview Text",
+      FirstName: "",
+      LastName: "",
+      Favorite: "",
+      Comment: ""
     }
     // Socket Setup
     socket.emit("subscribe",
@@ -63,15 +62,35 @@ class App extends Component
 
   } // end of constructor
 
+  static defaultProps = {
+  className: "layout",
+  cols: 12,
+  rowHeight: 30,
+  onLayoutChange: function() {},
+  // This turns off compaction so you can place items wherever.
+  verticalCompact: false
+};
+
+onLayoutChange(layout) {
+  this.props.onLayoutChange(layout);
+}
   // macro buttons
   buttonOneClick(event)
   {
+     var test = this.props.FirstName;
+    console.log(test);
     this.inputTextField.focus();
     this.setState(
     {
       inputText: "Hello there! My name is BB8 and I'm the teaching assistant for this classroom. Elliot has programmed me to assist in our lessons together.",
       previewText: "Hello there! My name is Brian and I'm the teaching assistant for this classroom. Elliot has programmed me to assist in our lessons together."
     })
+    socket.emit('to room',
+    {
+      room: "pi-client",
+      type: "typing",
+      data: "typing"
+    });
   }
 
   buttonTwoClick(event)
@@ -79,7 +98,8 @@ class App extends Component
     this.inputTextField.focus();
     this.setState(
     {
-      inputText: "A lot of people often wonder whether or not I'm real. Well, I am. And it's not nice for you to say I'm fake. It hurts my feelings."
+      inputText: "A lot of people often wonder whether or not I'm real. Well, I am. And it's not nice for you to say I'm fake. It hurts my feelings.",
+      previewText:"A lot of people often wonder whether or not I'm real. Well, I am. And it's not nice for you to say I'm fake. It hurts my feelings."
     })
   }
 
@@ -88,7 +108,8 @@ class App extends Component
     this.inputTextField.focus();
     this.setState(
     {
-      inputText: "Sorry about the computational error, Sometimes my machine kind makes errors too!"
+      inputText: "Sorry about the computational error, Sometimes my machine kind makes errors too!",
+      previewText: "Sorry about the computational error, Sometimes my machine kind makes errors too!"
     })
   }
 
@@ -97,7 +118,8 @@ class App extends Component
     this.inputTextField.focus();
     this.setState(
     {
-      inputText: "It was very nice meeting you, and I hope you enjoyed today's class. I hope to see you again!"
+      inputText: "It was very nice meeting you, and I hope you enjoyed today's class. I hope to see you again!",
+      previewText: "It was very nice meeting you, and I hope you enjoyed today's class. I hope to see you again!"
     })
   }
 
@@ -106,7 +128,8 @@ class App extends Component
     this.inputTextField.focus();
     this.setState(
     {
-      inputText: "Math is important because it teaches you how to solve problems. Honestly speaking, I don't know if you'll use most of the equations we learn in here but I do expect you to develop your sense of intuition."
+      inputText: "Math is important because it teaches you how to solve problems. Honestly speaking, I don't know if you'll use most of the equations we learn in here but I do expect you to develop your sense of intuition.",
+      previewText: "Math is important because it teaches you how to solve problems. Honestly speaking, I don't know if you'll use most of the equations we learn in here but I do expect you to develop your sense of intuition."
     })
   }
 
@@ -211,11 +234,12 @@ class App extends Component
         <h1 className="App-title">Teaching Assistant App</h1>
       </header>
       <p className="App-intro"></p>
-      <ResponsiveGridLayout className="layout" draggableCancel="input,textarea">
-        <div key="a" data-grid={{x: 0, y: 0, w: 7, h: 2}}>
+        <ReactGridLayout
+        {...this.props}>
+        <div key="a" data-grid={{x: 0, y: 0, w: 7, h: 10}}>
           <ChatComponent inputText={this.state.inputText} handleChatInputChange={this.handleChatInputChange} sendChat={this.sendChat} messages={this.state.messages} inputRef={(ref) => this.inputTextField = ref} />
         </div>
-        <div key="b" data-grid={{x: 15, y: 0, w: 5, h: 2.030}}>
+        <div key="b" data-grid={{x: 8, y: 0, w: 5, h: 9}}>
           {this.shouldRenderQuickCommandsList()}
           <br/>
           <QuickCommands
@@ -226,10 +250,10 @@ class App extends Component
             buttonFiveClick={this.buttonFiveClick}
             toggleQuickCommandsListVisibility={this.toggleQuickCommandsListVisibility}/>
         </div>
-        <div key="c" data-grid={{x: 0, y: 20, w: 7, h: 2}}>
+        <div key="c" data-grid={{x: 0, y: 10, w: 7, h: 2}}>
           <ChatSettings handleVoiceChange={this.handleVoiceChange}/>
         </div>
-      </ResponsiveGridLayout>
+      </ReactGridLayout>
     </div>);
   }
 }
