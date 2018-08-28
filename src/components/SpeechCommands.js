@@ -31,7 +31,7 @@ class Dictaphone extends Component
       {
         this.props.resetTranscript();
       }
-    }, 5000);
+    }, 9000);
 
   }
 
@@ -90,6 +90,13 @@ class Dictaphone extends Component
   sendToChatBox(mytext)
   {
     console.log(mytext);
+    socket.emit("to room",
+    {
+      room: "pi-client",
+      type: "typing",
+      data: mytext
+    });
+
   }
   render()
   {
@@ -107,10 +114,10 @@ class Dictaphone extends Component
     return (
       <div className="chatSettings">
         <button onClick={resetTranscript}>Reset</button>
-        <button onClick={this.sendToChatBox(finalTranscript)}>Send</button>
         <span>{transcript}</span>
         <br/>
         <h2>{finalTranscript}</h2>
+        <button onClick={this.sendToChatBox(finalTranscript)}>Send</button>
       </div>
     )
   }
