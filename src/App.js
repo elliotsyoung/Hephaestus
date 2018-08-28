@@ -6,7 +6,11 @@ from 'react';
 import './App.css';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
-import RGL, { WidthProvider } from "react-grid-layout";
+import RGL,
+{
+  WidthProvider
+}
+from "react-grid-layout";
 import ChatComponent from './components/ChatComponent.js';
 import QuickCommands from './components/QuickCommands.js';
 import QuickCommandsList from './components/QuickCommandsList.js';
@@ -63,21 +67,22 @@ class App extends Component
   } // end of constructor
 
   static defaultProps = {
-  className: "layout",
-  cols: 12,
-  rowHeight: 30,
-  onLayoutChange: function() {},
-  // This turns off compaction so you can place items wherever.
-  verticalCompact: false
-};
+    className: "layout",
+    cols: 12,
+    rowHeight: 30,
+    onLayoutChange: function() {},
+    // This turns off compaction so you can place items wherever.
+    verticalCompact: false
+  };
 
-onLayoutChange(layout) {
-  this.props.onLayoutChange(layout);
-}
+  onLayoutChange(layout)
+  {
+    this.props.onLayoutChange(layout);
+  }
   // macro buttons
   buttonOneClick(event)
   {
-     var test = this.props.FirstName;
+    var test = this.props.FirstName;
     console.log(test);
     this.inputTextField.focus();
     this.setState(
@@ -99,7 +104,7 @@ onLayoutChange(layout) {
     this.setState(
     {
       inputText: "A lot of people often wonder whether or not I'm real. Well, I am. And it's not nice for you to say I'm fake. It hurts my feelings.",
-      previewText:"A lot of people often wonder whether or not I'm real. Well, I am. And it's not nice for you to say I'm fake. It hurts my feelings."
+      previewText: "A lot of people often wonder whether or not I'm real. Well, I am. And it's not nice for you to say I'm fake. It hurts my feelings."
     })
   }
 
@@ -235,7 +240,7 @@ onLayoutChange(layout) {
       </header>
       <p className="App-intro"></p>
         <ReactGridLayout
-        {...this.props}>
+        {...this.props}  draggableCancel="input,textarea">
         <div key="a" data-grid={{x: 0, y: 0, w: 7, h: 10}}>
           <ChatComponent inputText={this.state.inputText} handleChatInputChange={this.handleChatInputChange} sendChat={this.sendChat} messages={this.state.messages} inputRef={(ref) => this.inputTextField = ref} />
         </div>
