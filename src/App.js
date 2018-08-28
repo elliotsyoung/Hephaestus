@@ -69,7 +69,7 @@ class App extends Component
     this.inputTextField.focus();
     this.setState(
     {
-      inputText: "Hello there! My name is Brian and I'm the teaching assistant for this classroom. Elliot has programmed me to assist in our lessons together.",
+      inputText: "Hello there! My name is BB8 and I'm the teaching assistant for this classroom. Elliot has programmed me to assist in our lessons together.",
       previewText: "Hello there! My name is Brian and I'm the teaching assistant for this classroom. Elliot has programmed me to assist in our lessons together."
     })
   }
