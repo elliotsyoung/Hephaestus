@@ -15,8 +15,9 @@ import ChatComponent from './components/ChatComponent.js';
 import QuickCommands from './components/QuickCommands.js';
 import QuickCommandsList from './components/QuickCommandsList.js';
 import ChatSettings from './components/chatSettings.js';
-import openSocket from 'socket.io-client';
-const socket = openSocket('https://fusionpaloalto.elliotsyoung.com');
+import SpeechCommands from './components/SpeechCommands.js';
+import io from 'socket.io-client';
+const socket = io('https://fusionpaloalto.elliotsyoung.com');
 const ReactGridLayout = WidthProvider(RGL);
 class App extends Component
 {
@@ -143,8 +144,13 @@ class App extends Component
   sendChat(event)
   {
     event.preventDefault();
-
-    socket.emit("pi room chat message", this.state.inputText);
+    console.log("form submitted with value:", this.state.inputText);
+    socket.emit('to room',
+    {
+      room: "pi-client",
+      type: "robot speak command",
+      data: this.state.inputText
+    });
     this.setState(
     {
       inputText: ""
@@ -258,6 +264,10 @@ class App extends Component
         <div key="c" data-grid={{x: 0, y: 10, w: 7, h: 2}}>
           <ChatSettings handleVoiceChange={this.handleVoiceChange}/>
         </div>
+        <div key="d" data-grid={{x: 0, y: 20, w: 7, h: 5}}>
+          <SpeechCommands/>
+        </div>
+
       </ReactGridLayout>
     </div>);
   }

@@ -21,6 +21,7 @@ class Dictaphone extends Component
   constructor(props)
   {
     super(props);
+    this.sendToChatBox = this.sendToChatBox.bind(this);
     socket.emit("subscribe",
     {
       room: "pi-client"
@@ -87,14 +88,13 @@ class Dictaphone extends Component
       this.props.stopListening();
     }
   }
-  sendToChatBox(mytext)
+  sendToChatBox()
   {
-    console.log(mytext);
     socket.emit("to room",
     {
       room: "pi-client",
-      type: "typing",
-      data: mytext
+      type: "robot speak command",
+      data: this.props.finalTranscript
     });
 
   }
@@ -117,7 +117,7 @@ class Dictaphone extends Component
         <span>{transcript}</span>
         <br/>
         <h2>{finalTranscript}</h2>
-        <button onClick={this.sendToChatBox(finalTranscript)}>Send</button>
+        <button onClick={this.sendToChatBox}>Send</button>
       </div>
     )
   }
