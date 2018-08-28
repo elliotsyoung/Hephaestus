@@ -21,7 +21,7 @@ class myForm extends React.Component
             <button onClick={this.props.buttonFiveClick} type="submit">~Learn Math~</button>
             <br/>
             <br/>
-            <button className="toggle" onClick={ this.props.toggleQuickCommandsListVisibility }>Toggle Help </button>
+            <button className="toggle" onClick={ this.props.toggleQuickCommandsListVisibility }>Toggle Quick Inputs </button>
             </div>
 
     )
