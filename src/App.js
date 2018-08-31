@@ -264,7 +264,7 @@ class App extends Component
         <div key="c" data-grid={{x: 0, y: 10, w: 7, h: 2}}>
           <ChatSettings handleVoiceChange={this.handleVoiceChange}/>
         </div>
-        <div key="d" data-grid={{x: 0, y: 20, w: 7, h: 5}}>
+        <div key="d" data-grid={{x: 0, y: 12, w: 7, h: 5}}>
           <SpeechCommands/>
         </div>
 

@@ -90,6 +90,7 @@ class Dictaphone extends Component
   }
   sendToChatBox()
   {
+    console.log(this.props.finalTranscript);
     socket.emit("to room",
     {
       room: "pi-client",
