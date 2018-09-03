@@ -51,7 +51,7 @@ class App extends Component
     {
       room: "pi-client"
     });
-    socket.on("pi room chat message", (message) =>
+    socket.on("robot speak command", (message) =>
     {
       const updatedMessages = this.state.messages.slice();
       updatedMessages.push(message);

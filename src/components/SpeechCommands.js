@@ -22,6 +22,9 @@ class Dictaphone extends Component
   {
     super(props);
     this.sendToChatBox = this.sendToChatBox.bind(this);
+    this.state = {
+      currentHeadPosition: 0
+    }
     socket.emit("subscribe",
     {
       room: "pi-client"
@@ -41,9 +44,25 @@ class Dictaphone extends Component
   {
     this.checkForCommands();
   }
+  moveRobotHead()
+  {
+    let rotationValues = [0, 30, 60, 90, 120, 150, 180];
+    rotationValues.splice(rotationValues.indexOf(this.state.currentHeadPosition), 1);
+    const newHeadPosition = rotationValues[Math.floor(Math.random() * rotationValues.length)];
+    socket.emit("to room",
+    {
+      room: "pi-client",
+      type: "rotate head",
+      data: newHeadPosition
+    });
+    this.setState(
+    {
+      currentHeadPosition: newHeadPosition
+    });
+  }
   checkForCommands()
   {
-    if (this.props.transcript.indexOf("bb-8") !== -1 || this.props.transcript.indexOf("PBA") !== -1 || this.props.transcript.indexOf("bb 8") !== -1 || this.props.transcript.indexOf("BBA") !== -1 || this.props.transcript.indexOf("BPA") !== -1)
+    if (this.props.transcript.indexOf("bb-8") !== -1 || this.props.transcript.indexOf("PBA") !== -1 || this.props.transcript.indexOf("bb 8") !== -1 || this.props.transcript.indexOf("BBA") !== -1 || this.props.transcript.indexOf("BPA") !== -1 || this.props.transcript.indexOf("bb8") !== -1)
     {
       console.log("You said bb-8!");
       socket.emit("to room",
@@ -52,12 +71,7 @@ class Dictaphone extends Component
         type: "robot speak command",
         data: "Hello there!"
       })
-      socket.emit("to room",
-      {
-        room: "pi-client",
-        type: "rotate head",
-        data: Math.floor(170 * Math.random())
-      })
+      this.moveRobotHead();
       this.props.resetTranscript();
     }
     else if (this.props.transcript.indexOf("introduce yourself") !== -1)
@@ -67,13 +81,8 @@ class Dictaphone extends Component
         room: "pi-client",
         type: "robot speak command",
         data: "Hello there! My name is BB8 and I'm the teaching assistant for this classroom. Elliot has programmed me to assist in his lessons!"
-      })
-      socket.emit("to room",
-      {
-        room: "pi-client",
-        type: "rotate head",
-        data: Math.floor(170 * Math.random())
-      })
+      });
+      this.moveRobotHead();
       this.props.resetTranscript();
     }
     else if (this.props.transcript.indexOf("take a break") !== -1)
@@ -87,6 +96,22 @@ class Dictaphone extends Component
       this.props.resetTranscript();
       this.props.stopListening();
     }
+    else if (this.props.transcript.indexOf("look at me") !== -1)
+    {
+      socket.emit("to room",
+      {
+        room: "pi-client",
+        type: "robot speak command",
+        data: "I'm looking at you, Elliot."
+      });
+      socket.emit("to room",
+      {
+        room: "pi-client",
+        type: "rotate head",
+        data: 0
+      });
+      this.props.resetTranscript();
+    }
   }
   sendToChatBox()
   {
@@ -96,6 +121,7 @@ class Dictaphone extends Component
       type: "robot speak command",
       data: this.props.finalTranscript
     });
+    this.moveRobotHead();
 
   }
   render()
