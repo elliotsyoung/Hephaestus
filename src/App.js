@@ -16,6 +16,7 @@ import QuickCommands from './components/QuickCommands.js';
 import QuickCommandsList from './components/QuickCommandsList.js';
 import ChatSettings from './components/chatSettings.js';
 import SpeechCommands from './components/SpeechCommands.js';
+import threedeespace from './components/threedeespace.js';
 import io from 'socket.io-client';
 const socket = io('https://fusionpaloalto.elliotsyoung.com');
 const ReactGridLayout = WidthProvider(RGL);
@@ -264,9 +265,12 @@ class App extends Component
         <div key="c" data-grid={{x: 0, y: 10, w: 7, h: 2}}>
           <ChatSettings handleVoiceChange={this.handleVoiceChange}/>
         </div>
-        <div key="d" data-grid={{x: 0, y: 20, w: 7, h: 5}}>
+        <div key="d" data-grid={{x: 0, y: 12, w: 7, h: 5}}>
           <SpeechCommands/>
         </div>
+        <div key="e" data-grid={{x: 0, y: 13, w: 7, h: 2}}>
+          <threedeespace/>
+          </div>
 
       </ReactGridLayout>
     </div>);
