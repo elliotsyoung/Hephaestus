@@ -88,16 +88,20 @@ class Dictaphone extends Component
       this.props.stopListening();
     }
   }
-  sendToChatBox()
+  sendToChatBox(event)
   {
     console.log(this.props.finalTranscript);
+    event.preventDefault();
+
     socket.emit("to room",
     {
       room: "pi-client",
       type: "robot speak command",
       data: this.props.finalTranscript
     });
-
+    this.setState({
+      inputText: ""
+    })
   }
   render()
   {
