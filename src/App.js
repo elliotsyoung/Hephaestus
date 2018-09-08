@@ -36,6 +36,7 @@ class App extends Component
     this.buttonFourClick = this.buttonFourClick.bind(this);
     this.buttonFiveClick = this.buttonFiveClick.bind(this);
     this.handleVoiceChange = this.handleVoiceChange.bind(this);
+    this.onLayoutChange = this.onLayoutChange.bind(this);
     this.state = {
       messages: [],
       inputText: "",
@@ -45,7 +46,15 @@ class App extends Component
       FirstName: "",
       LastName: "",
       Favorite: "",
-      Comment: ""
+      Comment: "",
+      layout: [
+      {
+        i: "a",
+        x: 0,
+        y: 0,
+        w: 7,
+        h: 6
+      }]
     }
     // Socket Setup
     socket.emit("subscribe",
@@ -65,6 +74,15 @@ class App extends Component
         ChatBox.scrollTop = ChatBox.scrollHeight;
       })
     })
+    socket.on("layout change", (layout) =>
+    {
+      console.log("recieved layout change", layout);
+      this.setState(
+      {
+        layout: layout
+      });
+      console.log("here's the new layout", layout);
+    })
 
   } // end of constructor
 
@@ -79,6 +97,14 @@ class App extends Component
 
   onLayoutChange(layout)
   {
+    console.log(layout);
+    console.log("sending layout change to other clients");
+    socket.emit("to room",
+    {
+      room: "pi-client",
+      type: "layout change",
+      data: layout
+    });
     this.props.onLayoutChange(layout);
   }
   // macro buttons
@@ -239,6 +265,24 @@ class App extends Component
         shouldShowQuickCommandsList: true
       })
   }
+  boxAMouseUp()
+  {
+    console.log("lifted mouse up on box A");
+  }
+  convertLayoutToObject()
+  {
+    let layoutObject = {};
+    this.state.layout.forEach((item) =>
+    {
+      layoutObject[item.i] = {
+        x: item.x,
+        y: item.y,
+        h: item.h,
+        w: item.w,
+      }
+    });
+    return layoutObject;
+  }
   render()
   {
     return (<div className="App">
@@ -246,9 +290,9 @@ class App extends Component
         <h1 className="App-title">Teaching Assistant App</h1>
       </header>
       <p className="App-intro"></p>
-        <ReactGridLayout
-        {...this.props}  draggableCancel="input,textarea">
-        <div key="a" data-grid={{x: 0, y: 0, w: 7, h: 10}}>
+        <ReactGridLayout {...this.props}
+          draggableCancel="input,textarea">
+        <div key="a"  data-grid={{x: 0, y: 0, w: 5, h: 8}}>
           <ChatComponent inputText={this.state.inputText} handleChatInputChange={this.handleChatInputChange} sendChat={this.sendChat} messages={this.state.messages} inputRef={(ref) => this.inputTextField = ref} />
         </div>
         <div key="b" data-grid={{x: 8, y: 0, w: 5, h: 9}}>
